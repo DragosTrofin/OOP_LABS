@@ -20,6 +20,7 @@ int main()
                 nr = 0;
             }
         }
+        suma = suma + nr;
     }
     printf("%d",suma);
     return 0;
