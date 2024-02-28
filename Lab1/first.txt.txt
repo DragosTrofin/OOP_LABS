@@ -1,21 +1,24 @@
 #include <iostream>
 using namespace std;
-
-ifstream fin("in.txt");
+char s[100];
+long int nr,suma = 0;
 int main()
 {
-    char s[100];
-    int nr = 0,suma=0;
-    FILE* sir = fopen("in.txt", "r");
-    while(fgets(s,100,sir))
-    {for (int i = 0; s[i] != NULL; i++)
+    
+    
+    FILE* sir; 
+    fopen_s(&sir, "in.txt", "r");
+    while (fgets(s, 100, sir))
     {
-        if (s[i] >= '0' && s[i] <= '9')
-            nr = nr * 10 + (s[i] - '0');
-        else
+        for (int i = 0; s[i] != NULL; i++)
         {
-            suma = suma + nr;
-            nr = 0;
+            if (s[i] >= '0' && s[i] <= '9')
+                nr = nr * 10 + (s[i] - '0');
+            else
+            {
+                suma = suma + nr;
+                nr = 0;
+            }
         }
     }
     printf("%d",suma);
