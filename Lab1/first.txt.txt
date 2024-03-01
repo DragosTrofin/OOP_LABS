@@ -1,3 +1,5 @@
+PROBLEMA 1
+
 #include <iostream>
 using namespace std;
 char s[100];
@@ -25,4 +27,131 @@ int main()
     printf("%d",suma);
     return 0;
 }
+
+
+
+
+
+PROBLEMA 2
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+char s[100];
+int i,j,k,ok=1;
+struct cuvant
+{
+    char sir[20];
+    int lg;
+};
+int comparare(cuvant* p1,cuvant* p2)
+{
+    if (p1->lg > p2->lg)
+        return 1;
+    if (p1->lg < p2->lg)
+        return -1;
+    for (int i = 0; i < p1->lg; i++)
+    {
+        if (p1->sir[i] > p2->sir[i])
+            return 1;
+        if (p1->sir[i] < p2->sir[i])
+            return -1;
+    }
+       return 0;
+}
+void interschimb(cuvant* p1, cuvant* p2)
+{
+    char saux[30];
+    int i,aux;
+    for (i = 0; i <= p1->lg; i++)
+
+        saux[i] = p1->sir[i];
+
+    for (i = 0; i <= p2->lg; i++)
+
+        p1->sir[i] = p2->sir[i];
+    for (i = 0; i <= p1->lg; i++)
+        p2->sir[i] = saux[i];
+    aux = p1->lg;
+    p1->lg = p2->lg;
+    p2->lg = aux;
+}
+cuvant v[100];
+int main()
+{
+    scanf_s("%[^\n]s", s, (unsigned)_countof(s));
+    for (i = 0; s[i] != NULL; i++)
+    {
+        if (s[i] != ' ')
+        {
+            v[j].sir[k] = s[i];
+            k++;
+        }
+        
+        else
+            if (i > 0 && s[i-1] != ' ')
+            {
+                v[j].sir[k] = '\0';
+                v[j].lg = k;
+                k = 0;
+                j++;
+            }
+    }
+    if (k > 0)
+    {
+        v[j].sir[k] = '\0';
+        v[j].lg = k;
+    }
+    else
+        j--;
+
+    while(ok!=0)
+    {
+        ok = 0;
+        for (i = 0; i < j; i++)
+        {
+            if(comparare(&v[i],&v[i+1])==-1)
+            {
+                interschimb(&v[i], &v[i + 1]);
+                    ok = i;
+            }
+        }
+    }
+
+    for (i = 0; i <= j; i++)
+        printf("%s\n", v[i].sir);
+
+    return 0;
+}
+
+
+
+
+
+PROBLEMA 3
+#include <iostream>
+using namespace std;
+
+bool isPrime(int n)
+{
+    if (n == 2)
+        return true;
+    if (n < 2)
+        return false;
+    for (int tr = 2; tr < n / 2 + 1; tr++)
+        if ((n % tr) == 0)
+            return false;
+    return true;
+}
+int main()
+{
+    int n;
+    std::cout << "Enter a number:";
+    std::cin >>n;
+    if (isPrime(n))
+        std::cout << n << " is prime !";
+    else
+        std::cout << n << " is NOT prime !";
+    return 0;
+}
+
 
